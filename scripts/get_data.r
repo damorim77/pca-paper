@@ -3,10 +3,13 @@
 # item unico, tempo de postagem > 0, 7 variaveis, sem NA, metricas em faixas
 # de iguais quantidades de observacoes (OneR::bin, method='content').
 #
-# Supoe diretorio de trabalho = raiz do projeto (rrun.ps1 garante isso).
+# Supoe diretorio de trabalho = raiz do projeto (rrun.ps1/rrun.sh garante isso).
 # Disponibiliza: df (dados para o princals) e as libs Gifi/dplyr/tidyr/OneR.
 
 # - Biblioteca de pacotes: relativa ao script (sob 2 niveis: scripts/x.r -> raiz)
+# Windows usa a lib binaria original; Linux usa a lib em fonte equivalente
+# (mesmas versoes travadas; ver ../setup/install_lib_r40_linux.r).
+libnome <- if (.Platform$OS.type == "windows") "Rlib_r40" else "Rlib_r40_linux"
 .args <- commandArgs(trailingOnly = FALSE)
 file_arg <- grep("^--file=", .args, value = TRUE)
 if (length(file_arg) > 0) {
@@ -16,7 +19,7 @@ if (length(file_arg) > 0) {
   # console interativo: assume raiz do projeto como diretorio de trabalho
   projeto_dir <- getwd()
 }
-.libPaths(file.path(projeto_dir, "libs", "Rlib_r40"))
+.libPaths(file.path(projeto_dir, "libs", libnome))
 
 require(dplyr)
 require(tidyr)

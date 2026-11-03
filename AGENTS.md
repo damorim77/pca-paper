@@ -11,24 +11,38 @@ Etapas concluídas:
 
 ## Comandos
 
-Rodar qualquer script R **sempre via** (usa o R 4.0.5 + a lib `libs/Rlib_r40`):
+Rodar qualquer script R **sempre via** `rrun.ps1` (Windows) ou `rrun.sh` (Linux,
+incl. SteamOS) — ambos usam o R 4.0.5 + a lib travada do respectivo SO:
 
 ```powershell
+# Windows
 .\rrun.ps1 scripts\acpnl_fit_nom_5d.r        # idem para os outros 3 scripts de fit ACPNL
 .\rrun.ps1 scripts\acpl_fit_5d_mm.r          # ACP logística, algoritmo MM
 .\rrun.ps1 scripts\acpl_fit_5d_convex.r      # ACP logística, relaxamento convexo
 .\rrun.ps1 scripts\acpl_relatorio.r          # relatório de análise (HTML)
 ```
 
-- Em contexto não-interativo: `powershell -ExecutionPolicy Bypass -File .\rrun.ps1 <script>`
-- `rrun.ps1` faz `Set-Location` na raiz — os scripts usam caminhos relativos
-  (`dados/`, `fits/`, `resultados/`) e dependem disso.
+```bash
+# Linux / SteamOS (bash/sh)
+./rrun.sh scripts/acpnl_fit_nom_5d.r         # idem para os outros scripts
+./rrun.sh scripts/acpl_relatorio.r
+```
+
+- Em contexto não-interativo (Windows): `powershell -ExecutionPolicy Bypass -File .\rrun.ps1 <script>`
+- Os executores fazem `Set-Location`/`cd` na raiz — os scripts usam caminhos
+  relativos (`dados/`, `fits/`, `resultados/`) e dependem disso.
 - O projeto fixa o **R 4.0.5**: o Gifi 0.3-9 é binário pré-compilado da era
   pré-UCRT e não carrega no R ≥ 4.2. A lib de pacotes é resolvida por
-  `scripts/get_data.r` (`.libPaths` relativo ao script, `libs/Rlib_r40`).
-- `rrun.ps1` **não** define `R_LIBS_USER`; só o `get_data.r` resolve a lib.
+  `scripts/get_data.r` (`.libPaths` relativo ao script) — **por SO**:
+  Windows `libs/Rlib_r40` (binários), Linux `libs/Rlib_r40_linux` (fonte, mesma
+  versões); a escolha é automática em `get_data.r` via `.Platform$OS.type`.
+- Os executores **não** definem `R_LIBS_USER`; só o `get_data.r` resolve a lib.
   Rscript direto com scripts que não `source()`am o `get_data.r` precisa de
   `.libPaths` manual.
+- **Linux/SteamOS**: o R 4.0.5 em si vive no repo (`libs/mamba_r40`, conda env
+  via micromamba, com gcc/gfortran do conda-forge), criado uma única vez por
+  `./setup/setup_r40_linux.sh` (sem root). Detalhes da lib Linux em
+  `setup/install_lib_r40_linux.r`.
 
 ## Como o pipeline funciona
 
@@ -83,3 +97,18 @@ Divergências conhecidas e aceitas (não "corrigir"):
   `unexpected input`. Se reescrever scripts .r por shell, gravar UTF-8 **sem BOM**.
 - `libs/` é grande e é parte do ambiente. Se apagada, reinstalar com binários de
   arquivo do CRAN (receita no README): R 4.0.5 + `https://cran-archive.r-project.org`.
+  No Linux, `./setup/setup_r40_linux.sh` recria R (`libs/mamba_r40`) e a lib
+  (`libs/Rlib_r40_linux`) do zero, de forma idempotente.
+- **Compilação da lib no Linux**: o gcc moderno (≥ 15) usa C23 como default e
+  quebra fontes da era 2020 (`mgcv` usa `true` como nome de variável; `survival`
+  tem protótipos K&R). O `setup_r40_linux.sh` fixa `-std=gnu17` para toda a
+  compilação via `libs/Makevars_r40_linux` + `R_MAKEVARS_USER`.
+- **O Gifi 0.3-9 não está no Archive do CRAN** — no Linux ele vem do snapshot do
+  Posit Package Manager do dia da construção da lib Windows (`2022-04-21`),
+  fixado em `setup/install_lib_r40_linux.r`. O snapshot também garante todas
+  as demais versões travadas; o instalador confere a versão de cada tarball
+  antes de compilar.
+- O `r-base` do conda **não** traz os pacotes "recommended" (`MASS`, `Matrix`,
+  `mgcv`...): o `ggplot2` (Imports do `logisticPCA`) exige `MASS`/`mgcv`, e `mgcv`
+  exige `Matrix`/`nlme` — o instalador os compila junto na lib do projeto.
+  `survival`/`lattice` não são necessários (apenas Suggests de mgcv/ggplot2).

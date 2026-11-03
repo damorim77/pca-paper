@@ -313,16 +313,16 @@ html <- sub('<img src="fig_cvx_scree">',  img("acpl_fig_cvx5d_scree.png"),  html
 html <- sub('<img src="fig_cvx_loadplot">',  img("acpl_fig_cvx5d_loadplot.png"),  html, fixed = TRUE)
 html <- sub('<img src="fig_cvx_transplot">', img("acpl_fig_cvx5d_transplot.png"), html, fixed = TRUE)
 
-# - grava HTML e converte p/ PDF (Edge headless)
-html_tmp <- "C:/Users/danil/AppData/Local/Temp/opencode/relatorio_acp_logistica.html"
+# - grava HTML e converte p/ PDF (Edge headless, so Windows)
+html_tmp <- file.path(tempdir(), "relatorio_acp_logistica.html")
 writeLines(html, html_tmp, useBytes = TRUE)
 
 edge <- "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
 pdf  <- "C:/projects/pca-paper/resultados/relatorio_acp_logistica.pdf"
-if (file.exists(edge)) {
+if (.Platform$OS.type == "windows" && file.exists(edge)) {
   system(paste(shQuote(edge),
                "--headless --disable-gpu --no-pdf-header-footer",
-               paste0('--user-data-dir="C:/Users/danil/AppData/Local/Temp/opencode/edge_acpl"'),
+               paste0('--user-data-dir="', file.path(tempdir(), "edge_acpl"), '"'),
                paste0('--print-to-pdf="', pdf, '"'),
                paste0('"file:///', html_tmp, '"')),
          wait = TRUE)

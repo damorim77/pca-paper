@@ -1,0 +1,5 @@
+# usado por scripts/setup_r40_linux.sh na compilacao da lib em fonte
+CFLAGS += -std=gnu17
+CXXFLAGS += -std=gnu17
+FFLAGS += -std=gnu17
+FCFLAGS += -std=gnu17
