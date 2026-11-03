@@ -1,0 +1,15 @@
+bin	bin
+breastcancer	breastcancer
+eval_model	eval_model
+is.OneR	is.OneR
+maxlevels	maxlevels
+OneR	OneR
+OneR.data.frame	OneR
+OneR.formula	OneR
+optbin	optbin
+optbin.data.frame	optbin
+optbin.formula	optbin
+plot.OneR	plot.OneR
+predict.OneR	predict.OneR
+print.OneR	print.OneR
+summary.OneR	summary.OneR

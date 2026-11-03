@@ -1,0 +1,22 @@
+ABC                     ABC Customer Satisfaction
+cv.morals               Cross-validation for Morals fit
+galo                    GALO dataset
+gubell                  Guttman-Bell dataset
+hartigan                Hartigan's Hardware
+homals                  Multiple Correspondence Analysis (HOMALS).
+house                   House
+knotsGifi               Utility function for Gifi knot specifications.
+makeNumeric             Convert a data frame into a numeric matrix.
+mammals                 Mammals dataset
+morals                  Multiple Regression (MORALS).
+neumann                 Neumann dataset
+plot.homals             Plot Methods for Homals
+plot.morals             Plot Methods for Morals
+plot.princals           Plot Methods for Princals
+princals                Categorical principal component analysis
+                        (PRINCALS).
+roskam                  Roskam dataset
+senate                  Senate votes
+senate07                Senate votes 2007
+sleeping                Sleeping Bags
+small                   Small dataset

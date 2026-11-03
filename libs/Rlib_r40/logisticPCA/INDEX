@@ -1,0 +1,23 @@
+convexLogisticPCA       Convex Logistic Principal Component Analysis
+cv.clpca                CV for convex logistic PCA
+cv.lpca                 CV for logistic PCA
+cv.lsvd                 CV for logistic SVD
+fitted.lpca             Fitted values using logistic PCA
+fitted.lsvd             Fitted values using logistic SVD
+house_votes84           United States Congressional Voting Records 1984
+inv.logit.mat           Inverse logit for matrices
+log_like_Bernoulli      Bernoulli Log Likelihood
+logisticPCA             Logistic Principal Component Analysis
+logisticPCA-package     logisticPCA-package
+logisticSVD             Logistic Singular Value Decomposition
+plot.clpca              Plot convex logistic PCA
+plot.cv.lpca            Plot CV for logistic PCA
+plot.lpca               Plot logistic PCA
+plot.lsvd               Plot logistic SVD
+predict.clpca           Predict Convex Logistic PCA scores or
+                        reconstruction on new data
+predict.lpca            Predict Logistic PCA scores or reconstruction
+                        on new data
+predict.lsvd            Predict Logistic SVD left singular values or
+                        reconstruction on new data
+project.Fantope         Project onto the Fantope

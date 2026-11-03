@@ -1,0 +1,11 @@
+OneR                    One Rule function
+bin                     Binning function
+breastcancer            Breast Cancer Wisconsin Original Data Set
+eval_model              Classification Evaluation function
+is.OneR                 Test OneR model objects
+maxlevels               Remove factors with too many levels
+optbin                  Optimal Binning function
+plot.OneR               Plot Diagnostics for an OneR object
+predict.OneR            Predict method for OneR models
+print.OneR              Print OneR models
+summary.OneR            Summarize OneR models

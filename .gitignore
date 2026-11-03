@@ -1,0 +1,10 @@
+# Arquivos temporários do R
+.Rhistory
+.Rproj.user/
+*.Rproj
+
+# Logs e temporários
+*.log
+*.tmp
+
+# (libs/ e resultados/ são mantidos: reprodução fiel do ambiente R 4.0.5)
