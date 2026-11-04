@@ -176,13 +176,12 @@ relaxada H completa; MM é estritamente rank-5). A comparação justa entre os d
 <h3>4.1 Cargas (componentes 1 e 2)</h3>
 <div class="peq">Tabela 3 — Loadings MM, comps 1–2 (U, 18 colunas binárias)</div>
 
-<p><b>Componente 1 — qualidade da entrega.</b> Polos bem definidos: no lado positivo,
+<p><b>Componente 1 — qualidade da entrega e valor do pedido.</b> Polos bem definidos: no lado positivo,
 cartão de crédito (+0,312), pedido entregue no prazo (+0,257), postagem no prazo
 (+0,184) e review boa (+0,211) e ticket alto (TPV b4/b5, +0,23/+0,24); no lado
-negativo, as faixas longas de prazo — ATD b5 (−0,420) e ATS b5 (−0,336) — e os tickets
-baixos (TPV b2/b3, −0,20/−0,18). A leitura é a mesma história da ACPNL: prazos curtos
-e cumpridos andam com satisfação (boa) e tickets maiores; prazos longos andam com
-review ruim (categoria de referência) e tickets baixos.</p>
+negativo, as faixas longas de prazo — ATD b5 (−0,420) e ATS b5 (−0,336) — e os tickets baixos (TPV b2/b3, −0,20/−0,18).
+O eixo não mede apenas qualidade da entrega, mas a associação dela com o valor do pedido:
+pedidos de maior valor tendem a ter entrega e postagem no prazo e review boa; pedidos de menor valor tendem a atrasar e receber review ruim.</p>
 <p><b>Componente 2 — poder de compra / meio de pagamento.</b> Separa ticket alto +
 cartão de crédito (TPV b4 +0,359, TPV b5 +0,410, credit_card +0,454) de ticket baixo
 (TPV b2 −0,286, TPV b3 −0,294) e voucher (−0,154). É um eixo de <i>valor do pedido</i>,
@@ -230,11 +229,11 @@ solução relaxada; ver ressalva da Seção 3).</p>
 <h3>5.1 Cargas (componentes 1 e 2)</h3>
 <div class="peq">Tabela 5 — Loadings convexo, comps 1–2 (U projetado no Fantope)</div>
 
-<p><b>Componente 1 — mesma história da qualidade da entrega, mais limpa.</b>
-ATD b5 (−0,608) e ATS b5 (−0,425) dominam o polo negativo; ODO = 1 (+0,368), SDO = 1
-(+0,271), review boa (+0,358) e ATD b2 (+0,241) o positivo. O eixo reproduz o
-Componente 1 da MM com cargas mais concentradas (consequência da projeção no
-Fantope).</p>
+<p><b>Componente 1 — qualidade da entrega e valor do pedido.</b> ATD b5 (−0,608) e ATS b5 (−0,425) dominam o polo negativo; ODO = 1 (+0,368), SDO = 1
+(+0,271), review boa (+0,358) e ATD b2 (+0,241) o positivo. O eixo não mede apenas qualidade da entrega,
+mas a associação dela com o valor do pedido: tickets altos andam com entrega/postagem no prazo e review boa;
+tickets baixos andam com atraso e review ruim. Reproduz o Componente 1 da MM com cargas mais concentradas
+(consequência da projeção no Fantope).</p>
 <p><b>Componente 2 — meio de pagamento e ticket.</b> Aqui o convexo separa o eixo de
 forma mais nítida que a MM: credit_card (+0,680) quase sozinho no polo positivo,
 com TPV b5 (+0,453) e TPV b4 (+0,244); voucher (−0,263), debit_card (−0,140) e
