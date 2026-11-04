@@ -54,7 +54,7 @@ img <- function(arq) paste0('<img src="plots/', arq, '">')
 tab_cod <- paste0("<table><thead><tr><th>Coluna</th><th>Variável</th>",
   "<th>Categoria observada</th><th>Papel</th></tr></thead><tbody>",
   paste(apply(codif, 1, function(r) paste0(
-    "<tr><td>", esc(if (r[["coluna"]] == "") "&mdash;" else r[["coluna"]]),
+    "<tr><td>", esc(if (r[["coluna"]] == "") "—" else r[["coluna"]]),
     "</td><td>", esc(r[["variavel"]]), "</td><td>", esc(r[["rotulo"]]),
     "</td><td>", if (r[["is_ref"]] == "TRUE") "referência" else "dummy",
     "</td></tr>")), collapse = ""), "</tbody></table>")
