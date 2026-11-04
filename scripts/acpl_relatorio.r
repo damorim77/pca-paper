@@ -157,7 +157,7 @@ critério 1e-6. Em ambos, a estimativa é determinística (sem início aleatóri
 <h2>3. Scree — quanto o modelo explica por número de componentes</h2>
 <div class="peq">Tabela 2 — Proporção do desvio de Bernoulli explicada, por k, dos dois algoritmos</div>
 
-<p>Observações: (i) <b>não há ombro acentuado</b> — o ganho por componente fica entre
+<p>Observações: (i) <b>não há cotovelo acentuado</b> — o ganho por componente fica entre
 0,11 e 0,14 até k = 5 e cai para ~0,08 depois. A queda do ganho incremental a partir da
 6ª componente indica o cotovelo do scree em k = 5, o que sustenta a retenção de
 5 componentes. A escolha coincide com a ACPNL, mas é fundamentada na interpretação do
