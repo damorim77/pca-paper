@@ -158,8 +158,10 @@ critério 1e-6. Em ambos, a estimativa é determinística (sem início aleatóri
 <div class="peq">Tabela 2 — Proporção do desvio de Bernoulli explicada, por k, dos dois algoritmos</div>
 
 <p>Observações: (i) <b>não há ombro acentuado</b> — o ganho por componente fica entre
-0,11 e 0,14 até k = 5 e cai para ~0,08 depois, o que sustenta a escolha de 5
-componentes (paridade com a ACPNL) sem que a estrutura deixe de ser explorada;
+0,11 e 0,14 até k = 5 e cai para ~0,08 depois. A queda do ganho incremental a partir da
+6ª componente indica o cotovelo do scree em k = 5, o que sustenta a retenção de
+5 componentes. A escolha coincide com a ACPNL, mas é fundamentada na interpretação do
+próprio scree plot, e não apenas por paridade técnica.</p>
 (ii) o convexo explica <b>mais desvio em todo k</b> (0,687 vs 0,596 em k = 5) — esperado,
 pois ele resolve uma versão <i>relaxada</i> do problema (a medida usa a matriz
 relaxada H completa; MM é estritamente rank-5). A comparação justa entre os dois

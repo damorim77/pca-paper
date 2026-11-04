@@ -70,8 +70,10 @@ critério 1e-6. Em ambos, a estimativa é determinística (sem início aleatóri
 <table><thead><tr><th>Componentes</th><th>Desvio explicado (MM)</th><th>Desvio explicado (convexo)</th></tr></thead><tbody><tr><td>k = 1</td><td>0.137</td><td>0.214</td></tr><tr><td>k = 2</td><td>0.267</td><td>0.379</td></tr><tr><td>k = 3</td><td>0.380</td><td>0.507</td></tr><tr><td>k = 4</td><td>0.488</td><td>0.607</td></tr><tr><td>k = 5</td><td>0.596</td><td>0.687</td></tr><tr><td>k = 6</td><td>0.671</td><td>0.750</td></tr><tr><td>k = 7</td><td>0.768</td><td>0.800</td></tr></tbody></table>
 
 <p>Observações: (i) <b>não há ombro acentuado</b> — o ganho por componente fica entre
-0,11 e 0,14 até k = 5 e cai para ~0,08 depois, o que sustenta a escolha de 5
-componentes (paridade com a ACPNL) sem que a estrutura deixe de ser explorada;
+0,11 e 0,14 até k = 5 e cai para ~0,08 depois. A queda do ganho incremental a partir da
+6ª componente indica o cotovelo do scree em k = 5, o que sustenta a retenção de
+5 componentes. A escolha coincide com a ACPNL, mas é fundamentada na interpretação do
+próprio scree plot, e não apenas por paridade técnica.</p>
 (ii) o convexo explica <b>mais desvio em todo k</b> (0,687 vs 0,596 em k = 5) — esperado,
 pois ele resolve uma versão <i>relaxada</i> do problema (a medida usa a matriz
 relaxada H completa; MM é estritamente rank-5). A comparação justa entre os dois

@@ -124,6 +124,8 @@ acpl_scree <- function(scree_k, id) {
        xlab = "Number of components", ylab = "Deviance explained by component",
        main = "Scree Plot",
        ylim = range(inc, 0) * c(0.95, 1.05))
+  # traçado vertical em k = 5 reflete o cotovelo do scree plot (queda do
+  # desvio explicado incremental a partir da 6ª componente)
   abline(v = 5, lty = 3, col = "gray40")
   abline(h = 0, lty = 1, col = "gray80")
   dev.off()
