@@ -159,10 +159,24 @@ acpl_loadplot <- function(fit, id) {
   png(paste0('resultados/plots/acpl_fig_', id, '_loadplot.png'),
       width = 1000, height = 760, res = 120)
   op <- par(mar = c(4.5, 4.5, 3, 1))
-  plot(U[, 1], U[, 2], pch = 19, cex = 0.7, asp = 1, col = col_pts,
+
+  # range incluindo a origem e margem para setas/labels
+  xr <- range(c(0, U[, 1])) * 1.35
+  yr <- range(c(0, U[, 2])) * 1.35
+
+  # plot vazio p/ definir eixos com a origem visível
+  plot(1, 1, type = "n", asp = 1,
        xlab = "Component 1", ylab = "Component 2", main = "Loadings Plot",
-       xlim = range(U[, 1], 0) * 1.35, ylim = range(U[, 2], 0) * 1.35)
+       xlim = xr, ylim = yr)
   abline(h = 0, v = 0, lty = 3, col = "gray60")
+
+  # setas (loadings vectors) saindo da origem ate cada variavel
+  arrows(0, 0, U[, 1], U[, 2], col = col_pts, length = 0.08,
+         angle = 20, lwd = 1.2)
+
+  # pontos nas pontas das setas
+  points(U[, 1], U[, 2], pch = 19, cex = 0.7, col = col_pts)
+
   pos_lab <- ifelse(U[, 1] < -0.15, 2, 4)
   text(U[, 1], U[, 2] + off, labels = labs, pos = pos_lab,
        cex = 0.68, col = col_pts, xpd = TRUE)

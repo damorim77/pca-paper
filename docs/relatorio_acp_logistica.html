@@ -30,6 +30,19 @@ ACPNL (Capítulo 5.3). Foram rodadas duas estimativas com 5 componentes: o algor
 de <b>Majoração-Minimização</b> (MM) e o de <b>Relaxamento convexo</b>, ambos de
 Landgraf e Lee (2015), via R <i>package</i> <code>logisticPCA</code> 0.2 (Landgraf).</p>
 
+<h3>Variáveis utilizadas</h3>
+<p>De-para entre os nomes originais da base Olist (<code>dados/olist.csv</code>) e os nomes usados nas análises ACPNL e ACP Logística:</p>
+<div class="peq">Dicionário de variáveis (7 variáveis originais)</div>
+<table><thead><tr><th>Nome original</th><th>Nome usado</th><th>Descrição</th></tr></thead><tbody>
+<tr><td>actual_time_to_shipping</td><td>ATS</td><td>Tempo real de postagem/envio (dias)</td></tr>
+<tr><td>actual_time_to_deliver</td><td>ATD</td><td>Tempo real de entrega (dias)</td></tr>
+<tr><td>order_delivered_onschedule</td><td>ODO</td><td>Entrega no prazo (0/1)</td></tr>
+<tr><td>shipping_delivered_onschedule</td><td>SDO</td><td>Postagem no prazo (0/1)</td></tr>
+<tr><td>payment_type</td><td>PT</td><td>Tipo de pagamento (boleto, credit_card, debit_card, voucher)</td></tr>
+<tr><td>review_score</td><td>RS</td><td>Avaliação da compra (1 a 5)</td></tr>
+<tr><td>total_payment_value</td><td>TPV</td><td>Valor total do pagamento (R$)</td></tr>
+</tbody></table>
+
 <h2>1. Codificação binária dos dados</h2>
 <p>A ACP Logística modela dados <b>binários</b> (Bernoulli). As 7 variáveis da ACPNL
 foram recodificadas em 18 colunas binárias. As variáveis métricas mantêm o binning
@@ -68,12 +81,12 @@ relaxada H completa; MM é estritamente rank-5). A comparação justa entre os d
 <h2>4. Resultados — algoritmo MM (script <code>acpl_fit_5d_mm.r</code>)</h2>
 <p>Convergência em <b>48 iterações</b>; desvio explicado (k = 5) = <b>0,5956</b>.</p>
 
-<img src="file:///C:/projects/pca-paper/resultados/plots/acpl_fig_mm5d_scree.png">
+<img src="plots/acpl_fig_mm5d_scree.png">
 <div class="fig-legenda">Figura 1 — Scree plot, MM (k = 1..7; linha pontilhada: k = 5)</div>
 
 <h3>4.1 Cargas (componentes 1 e 2)</h3>
 <div class="peq">Tabela 3 — Loadings MM, comps 1–2 (U, 18 colunas binárias)</div>
-<table><thead><tr><th>Variável</th><th>Comp. 1</th><th>Comp. 2</th></tr></thead><tbody><tr><td>ATS b2</td><td>0.0241</td><td>0.0296</td></tr><tr><td>ATS b3</td><td>0.316</td><td>-0.222</td></tr><tr><td>ATS b4</td><td>0.0398</td><td>-0.00563</td></tr><tr><td>ATS b5</td><td>-0.336</td><td>0.226</td></tr><tr><td>ATD b2</td><td>0.378</td><td>-0.252</td></tr><tr><td>ATD b3</td><td>-0.104</td><td>0.0228</td></tr><tr><td>ATD b4</td><td>0.127</td><td>-0.0378</td></tr><tr><td>ATD b5</td><td>-0.420</td><td>0.262</td></tr><tr><td>ODO=1</td><td>0.257</td><td>-0.159</td></tr><tr><td>SDO=1</td><td>0.184</td><td>-0.141</td></tr><tr><td>PT credit_card</td><td>0.312</td><td>0.454</td></tr><tr><td>PT debit_card</td><td>-0.0499</td><td>-0.0803</td></tr><tr><td>PT voucher</td><td>-0.108</td><td>-0.154</td></tr><tr><td>boa</td><td>0.211</td><td>-0.135</td></tr><tr><td>TPV b2</td><td>-0.197</td><td>-0.286</td></tr><tr><td>TPV b3</td><td>-0.176</td><td>-0.294</td></tr><tr><td>TPV b4</td><td>0.234</td><td>0.359</td></tr><tr><td>TPV b5</td><td>0.241</td><td>0.410</td></tr></tbody></table>
+<table><thead><tr><th>Variável</th><th>Comp. 1</th><th>Comp. 2</th></tr></thead><tbody><tr><td>ATS b2</td><td>0.0241</td><td>-0.0296</td></tr><tr><td>ATS b3</td><td>0.316</td><td>0.222</td></tr><tr><td>ATS b4</td><td>0.0398</td><td>0.00563</td></tr><tr><td>ATS b5</td><td>-0.336</td><td>-0.226</td></tr><tr><td>ATD b2</td><td>0.378</td><td>0.252</td></tr><tr><td>ATD b3</td><td>-0.104</td><td>-0.0228</td></tr><tr><td>ATD b4</td><td>0.127</td><td>0.0378</td></tr><tr><td>ATD b5</td><td>-0.420</td><td>-0.262</td></tr><tr><td>ODO=1</td><td>0.257</td><td>0.159</td></tr><tr><td>SDO=1</td><td>0.184</td><td>0.141</td></tr><tr><td>PT credit_card</td><td>0.312</td><td>-0.454</td></tr><tr><td>PT debit_card</td><td>-0.0499</td><td>0.0803</td></tr><tr><td>PT voucher</td><td>-0.108</td><td>0.154</td></tr><tr><td>boa</td><td>0.211</td><td>0.135</td></tr><tr><td>TPV b2</td><td>-0.197</td><td>0.286</td></tr><tr><td>TPV b3</td><td>-0.176</td><td>0.294</td></tr><tr><td>TPV b4</td><td>0.234</td><td>-0.359</td></tr><tr><td>TPV b5</td><td>0.241</td><td>-0.410</td></tr></tbody></table>
 
 <p><b>Componente 1 — qualidade da entrega.</b> Polos bem definidos: no lado positivo,
 cartão de crédito (+0,312), pedido entregue no prazo (+0,257), postagem no prazo
@@ -88,7 +101,7 @@ cartão de crédito (TPV b4 +0,359, TPV b5 +0,410, credit_card +0,454) de ticket
 não de logística — estrutura que a ACPNL não isola, porque lá o TPV foi tratado como
 ordinal monotônico e o PT como nominal.</p>
 
-<img src="file:///C:/projects/pca-paper/resultados/plots/acpl_fig_mm5d_loadplot.png">
+<img src="plots/acpl_fig_mm5d_loadplot.png">
 <div class="fig-legenda">Figura 2 — Loadings plot MM, comps 1–2 (cores por variável)</div>
 
 <h3>4.2 Quantificações (transplot análogo)</h3>
@@ -116,7 +129,7 @@ ordinal da ACPNL força a ser reta.</li>
 <li><b>RS:</b> contraste único (−0,85), separação forte entre boa/ruim.</li>
 </ul>
 
-<img src="file:///C:/projects/pca-paper/resultados/plots/acpl_fig_mm5d_transplot.png">
+<img src="plots/acpl_fig_mm5d_transplot.png">
 <div class="fig-legenda">Figura 3 — Transplot análogo MM (log-odds médio por categoria; ref. = 0)</div>
 
 <div class="secao"></div>
@@ -124,7 +137,7 @@ ordinal da ACPNL força a ser reta.</li>
 <p>Convergência em <b>27 iterações</b>; desvio explicado = <b>0,6872</b> (medido na
 solução relaxada; ver ressalva da Seção 3).</p>
 
-<img src="file:///C:/projects/pca-paper/resultados/plots/acpl_fig_cvx5d_scree.png">
+<img src="plots/acpl_fig_cvx5d_scree.png">
 <div class="fig-legenda">Figura 4 — Scree plot, convexo (k = 1..7; linha pontilhada: k = 5)</div>
 
 <h3>5.1 Cargas (componentes 1 e 2)</h3>
@@ -142,7 +155,7 @@ com TPV b5 (+0,453) e TPV b4 (+0,244); voucher (−0,263), debit_card (−0,140)
 TPV b2 (−0,341) / TPV b3 (−0,244) no negativo. Confirma a leitura da MM: existe
 uma dimensão latente de <b>valor do pedido associada ao meio de pagamento</b>.</p>
 
-<img src="file:///C:/projects/pca-paper/resultados/plots/acpl_fig_cvx5d_loadplot.png">
+<img src="plots/acpl_fig_cvx5d_loadplot.png">
 <div class="fig-legenda">Figura 5 — Loadings plot convexo, comps 1–2</div>
 
 <h3>5.2 Quantificações (transplot análogo)</h3>
@@ -163,7 +176,7 @@ linearidade do valor do pedido é robusta entre algoritmos.</li>
 (−0,35/−0,56/−0,37), refletindo a distribuição mais suave da solução relaxada.</li>
 </ul>
 
-<img src="file:///C:/projects/pca-paper/resultados/plots/acpl_fig_cvx5d_transplot.png">
+<img src="plots/acpl_fig_cvx5d_transplot.png">
 <div class="fig-legenda">Figura 6 — Transplot análogo convexo (log-odds médio por categoria; ref. = 0)</div>
 
 <div class="secao"></div>

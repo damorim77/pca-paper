@@ -7,4 +7,10 @@
 *.log
 *.tmp
 
-# (libs/ e resultados/ são mantidos: reprodução fiel do ambiente R 4.0.5)
+# Linux/SteamOS: ambiente reconstruído por scripts/setup_r40_linux.sh
+libs/bin/
+libs/mamba_r40/
+libs/Rlib_r40_linux/
+libs/cran_src/
+
+# (libs/Rlib_r40 e resultados/ são mantidos: reprodução fiel do ambiente R 4.0.5)

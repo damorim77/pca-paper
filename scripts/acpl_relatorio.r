@@ -45,8 +45,8 @@ tabela <- function(df, colnames_html) {
          paste(linhas, collapse = ""), "</tbody></table>")
 }
 
-img <- function(arq) paste0(
-  '<img src="file:///C:/projects/pca-paper/resultados/plots/', arq, '">')
+# caminho relativo a resultados/ (onde fica o HTML): funciona em qualquer SO
+img <- function(arq) paste0('<img src="plots/', arq, '">')
 
 # ---------------------------------------------------------------- tabelas
 
@@ -119,6 +119,19 @@ trabalho, que menciona a ACP Logística (Capítulo 4) mas reporta apenas a anál
 ACPNL (Capítulo 5.3). Foram rodadas duas estimativas com 5 componentes: o algoritmo
 de <b>Majoração-Minimização</b> (MM) e o de <b>Relaxamento convexo</b>, ambos de
 Landgraf e Lee (2015), via R <i>package</i> <code>logisticPCA</code> 0.2 (Landgraf).</p>
+
+<h3>Variáveis utilizadas</h3>
+<p>De-para entre os nomes originais da base Olist (<code>dados/olist.csv</code>) e os nomes usados nas análises ACPNL e ACP Logística:</p>
+<div class="peq">Dicionário de variáveis (7 variáveis originais)</div>
+<table><thead><tr><th>Nome original</th><th>Nome usado</th><th>Descrição</th></tr></thead><tbody>
+<tr><td>actual_time_to_shipping</td><td>ATS</td><td>Tempo real de postagem/envio (dias)</td></tr>
+<tr><td>actual_time_to_deliver</td><td>ATD</td><td>Tempo real de entrega (dias)</td></tr>
+<tr><td>order_delivered_onschedule</td><td>ODO</td><td>Entrega no prazo (0/1)</td></tr>
+<tr><td>shipping_delivered_onschedule</td><td>SDO</td><td>Postagem no prazo (0/1)</td></tr>
+<tr><td>payment_type</td><td>PT</td><td>Tipo de pagamento (boleto, credit_card, debit_card, voucher)</td></tr>
+<tr><td>review_score</td><td>RS</td><td>Avaliação da compra (1 a 5)</td></tr>
+<tr><td>total_payment_value</td><td>TPV</td><td>Valor total do pagamento (R$)</td></tr>
+</tbody></table>
 
 <h2>1. Codificação binária dos dados</h2>
 <p>A ACP Logística modela dados <b>binários</b> (Bernoulli). As 7 variáveis da ACPNL
@@ -314,7 +327,7 @@ html <- sub('<img src="fig_cvx_loadplot">',  img("acpl_fig_cvx5d_loadplot.png"),
 html <- sub('<img src="fig_cvx_transplot">', img("acpl_fig_cvx5d_transplot.png"), html, fixed = TRUE)
 
 # - grava HTML e converte p/ PDF (Edge headless, so Windows)
-html_tmp <- file.path(tempdir(), "relatorio_acp_logistica.html")
+html_tmp <- file.path("resultados", "relatorio_acp_logistica.html")
 writeLines(html, html_tmp, useBytes = TRUE)
 
 edge <- "C:/Program Files (x86)/Microsoft/Edge/Application/msedge.exe"
